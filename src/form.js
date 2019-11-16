@@ -4,6 +4,12 @@ export class Form {
     this.controls = controls;
   }
 
+  clearForm() {
+    Object.keys(this.controls).forEach(k => {
+      this.form[k].value = '';
+    })
+  }
+
   confirmPassword() {
     const $password = this.form.password;
     const $confirm = this.form.confirm;
@@ -13,6 +19,7 @@ export class Form {
       showErrorMessage($password, 'Такой пароль не подходит, смотрите справку!');
     } else if ($password.value !== $confirm.value) {
       showErrorMessage($password, 'Пароли не совпадают!');
+      showErrorMessage($confirm, 'Пароли не совпадают!');
     }
     return !invalidPasswords.has($password.value) && $password.value === $confirm.value;
   }
@@ -45,11 +52,13 @@ export class Form {
 }
 
 function showErrorMessage($control, message) {
+  $control.classList.add('warn-border');
   const errMessageHtml = `<p><small class="control-error">${message}</small></p>`;
   $control.closest('.form-control').insertAdjacentHTML('beforeend', errMessageHtml);
 }
 
 function clearControl($control) {
+  $control.classList.remove('warn-border');
   const $controlError = $control.closest('.form-control').querySelector('.control-error');
   if ($controlError) {
     $controlError.remove();

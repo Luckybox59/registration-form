@@ -14,6 +14,7 @@ export class RegisterComponent {
     this.form = new Form(this.$el, {
       email: [Validators.required, Validators.validEmail],
       password: [Validators.required],
+      confirm: [],
     })
   }
 }
@@ -27,7 +28,7 @@ function submitHandler(e) {
       password: this.$el.password.value,
       date: new Date().toLocaleDateString(),
     }
-
+    this.form.clearForm();
     console.log(registrationData);
   }
 }
