@@ -1,0 +1,99 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-size: 16px;
+}
+
+.app {
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+}
+
+.form h1 {
+  margin-bottom: 20px;
+  align-self: center;
+}
+
+.form-control {
+  text-align: right;
+  padding: 10px 0;
+}
+
+.form-control input {
+  height: 30px;
+  padding: 5px;
+  margin-left: 20px;
+  border-radius: 5px;
+  border: 1px solid gray;
+  outline: none;
+}
+
+.form-control .help {
+  position: relative;
+  margin-left: 10px;
+}
+
+.form-control .help:hover {
+  cursor: pointer;
+}
+
+.help-field {
+  position: absolute;
+  text-align: center;
+  padding: 3px;
+  border: 1px solid blue;
+  border-radius: 5px 5px 0;
+  background-color: rgba(255,255,255, 0.8);
+  bottom: 17px;
+  right: 9px;
+  max-height: 100px;
+  width: 200px;
+}
+
+.form-button {
+  outline: none;
+  font-size: 1rem;
+  font-weight: bold;
+  padding: 10px;
+  margin-top: 20px;
+  align-self: flex-end;
+  border-radius: 5px;
+  border: 1px solid rgb(185, 179, 179);
+  background-color: rgb(132, 207, 132);
+  color: white;
+}
+
+.form-button:hover {
+  cursor: pointer;
+}
+
+.hide {
+  display: none;
+}
+
+.show {
+  display: block;
+}
+
+.control-error {
+  align-self: center;
+  font-size: 13px;
+  color: red;
+}
+
+.break {
+  flex-basis: 100%;
+}
