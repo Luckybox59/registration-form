@@ -1,0 +1,85 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+html,
+body {
+  font-size: 16px;
+}
+.app {
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.form {
+  display: flex;
+  flex-direction: column;
+}
+.form h1 {
+  margin-bottom: 20px;
+  align-self: center;
+}
+.form-control {
+  text-align: right;
+  padding: 10px 0;
+}
+.form-control input {
+  height: 30px;
+  padding: 5px;
+  margin-left: 20px;
+  border-radius: 5px;
+  border: 1px solid gray;
+  outline: none;
+}
+.form-control input.error {
+  border: 1px solid #ff0000;
+}
+.form-control .help {
+  position: relative;
+  margin-left: 10px;
+}
+.form-control .help:hover {
+  cursor: pointer;
+}
+.form-control .help .help-field {
+  position: absolute;
+  text-align: center;
+  padding: 3px;
+  border: 1px solid blue;
+  border-radius: 5px 5px 0;
+  background-color: rgba(255, 255, 255, 0.8);
+  bottom: 17px;
+  right: 9px;
+  max-height: 100px;
+  width: 200px;
+}
+.btn {
+  outline: none;
+  font-size: 1rem;
+  font-weight: bold;
+  padding: 10px;
+  margin-top: 20px;
+  align-self: flex-end;
+  border-radius: 5px;
+  background-color: #49b134;
+  color: white;
+}
+.btn:hover {
+  background-color: #398a28;
+  cursor: pointer;
+}
+.hide {
+  display: none;
+}
+.show {
+  display: block;
+}
+.control-error {
+  align-self: center;
+  font-size: 13px;
+  color: #ff0000;
+}

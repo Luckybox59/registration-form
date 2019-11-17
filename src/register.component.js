@@ -12,8 +12,8 @@ export class RegisterComponent {
     this.$el.addEventListener('submit', submitHandler.bind(this));
     this.$el.addEventListener('click', helpIcoHandler.bind(this));
     this.form = new Form(this.$el, {
-      email: [Validators.required, Validators.validEmail],
-      password: [Validators.required],
+      email: [Validators.required, Validators.validateEmail],
+      password: [Validators.required, Validators.minLength(3)],
       confirm: [],
     })
   }
@@ -22,7 +22,6 @@ export class RegisterComponent {
 function submitHandler(e) {
   e.preventDefault();
   if (this.form.isValid() && this.form.confirmPassword()) {
-    alert('Регистрация прошла успешно!');
     const registrationData = {
       email: this.$el.email.value,
       password: this.$el.password.value,
@@ -30,6 +29,7 @@ function submitHandler(e) {
     }
     this.form.clearForm();
     console.log(registrationData);
+    setTimeout(() => alert('Регистрация прошла успешно!'), 100);
   }
 }
 

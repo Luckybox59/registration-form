@@ -1,4 +1,6 @@
 const HtmlPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const CopyPlugin = require('copy-webpack-plugin');
 const path = require('path');
 
 module.exports = {
@@ -15,6 +17,13 @@ module.exports = {
     new HtmlPlugin({
       filename: 'index.html',
       template: './src/index.html',
+    }),
+    new CopyPlugin([
+      { from: './src/invalid-passwords.json'},
+      { from: './src/style.css' },
+    ]),
+    new MiniCssExtractPlugin({
+      filename: 'style.css',
     })
   ],
   resolve: {
@@ -23,6 +32,10 @@ module.exports = {
   module: {
     rules: [
       { test: /\.js$/, exclude: /node_modules/, loader: 'babel-loader' },
+      {
+        test: /\.(less)$/,
+        use: [MiniCssExtractPlugin.loader, 'css-loader', 'less-loader']
+      },
     ]
   }
 }

@@ -13,13 +13,13 @@ export class Form {
   confirmPassword() {
     const $password = this.form.password;
     const $confirm = this.form.confirm;
-    const invalidPasswords = new Set(['123', 'password', 'qwerty']);
-    clearControl($password);
+    const invalidPasswords = new Set(JSON.parse(window.invalidPasswords));
+    clearControlError($password);
     if (invalidPasswords.has($password.value)) {
-      showErrorMessage($password, 'Такой пароль не подходит, смотрите справку!');
+      showControlError($password, 'Такой пароль не подходит, смотрите справку!');
     } else if ($password.value !== $confirm.value) {
-      showErrorMessage($password, 'Пароли не совпадают!');
-      showErrorMessage($confirm, 'Пароли не совпадают!');
+      showControlError($password, 'Пароли не совпадают!');
+      showControlError($confirm, 'Пароли не совпадают!');
     }
     return !invalidPasswords.has($password.value) && $password.value === $confirm.value;
   }
@@ -31,7 +31,7 @@ export class Form {
     Object.keys(this.controls).forEach(k => {
       const validators = this.controls[k];
       const $control = this.form[k];
-      clearControl($control);
+      clearControlError($control);
 
       let isValidControl = true;
 
@@ -40,7 +40,7 @@ export class Form {
       });
 
       if (!isValidControl) {
-        showErrorMessage($control, 'Введите корректоное значение, для спарвки нажмите знак вопроса!');
+        showControlError($control, 'Введите корректоное значение, для спарвки нажмите знак вопроса!');
       }
 
       isValidForm = isValidForm && isValidControl;
@@ -51,14 +51,14 @@ export class Form {
 
 }
 
-function showErrorMessage($control, message) {
-  $control.classList.add('warn-border');
+function showControlError($control, message) {
+  $control.classList.add('error');
   const errMessageHtml = `<p><small class="control-error">${message}</small></p>`;
   $control.closest('.form-control').insertAdjacentHTML('beforeend', errMessageHtml);
 }
 
-function clearControl($control) {
-  $control.classList.remove('warn-border');
+function clearControlError($control) {
+  $control.classList.remove('error');
   const $controlError = $control.closest('.form-control').querySelector('.control-error');
   if ($controlError) {
     $controlError.remove();
